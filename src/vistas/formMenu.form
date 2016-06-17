@@ -107,13 +107,13 @@
                       <Group type="102" attributes="0">
                           <EmptySpace pref="51" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jButton23" min="-2" pref="96" max="-2" attributes="0"/>
+                              <Component id="btnUsuarios" min="-2" pref="96" max="-2" attributes="0"/>
                               <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
-                                  <Component id="jButton24" min="-2" pref="87" max="-2" attributes="0"/>
+                                  <Component id="btnExpedientes" min="-2" pref="87" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
@@ -130,12 +130,12 @@
                                                   <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
                                                   <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="jButton25" min="-2" pref="83" max="-2" attributes="0"/>
+                                              <Component id="btnImportar" min="-2" pref="83" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                                          <Component id="jButton30" min="-2" pref="91" max="-2" attributes="0"/>
+                                          <Component id="btnInsti" min="-2" pref="91" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -143,7 +143,7 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
                                                   <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
-                                                  <Component id="jButton26" min="-2" pref="86" max="-2" attributes="0"/>
+                                                  <Component id="btnBuscar" min="-2" pref="86" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="1" attributes="0">
@@ -157,12 +157,12 @@
                                                   <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
                                                   <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="jButton27" min="-2" pref="74" max="-2" attributes="0"/>
+                                              <Component id="btnReportes" min="-2" pref="74" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
                                                   <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-                                                  <Component id="jButton28" min="-2" pref="86" max="-2" attributes="0"/>
+                                                  <Component id="btnHistorial" min="-2" pref="86" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="1" attributes="0">
@@ -172,15 +172,15 @@
                                               </Group>
                                           </Group>
                                           <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="jButton29" min="-2" pref="89" max="-2" attributes="0"/>
+                                              <Component id="btnRespaldar" min="-2" pref="89" max="-2" attributes="0"/>
                                               <Component id="jLabel31" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-                                          <Component id="jButton31" min="-2" pref="93" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-                                          <Component id="jButton32" min="-2" pref="94" max="-2" attributes="0"/>
+                                          <Component id="btnRestaurar" min="-2" pref="93" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
+                                          <Component id="btnAyuda" min="-2" pref="94" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -189,7 +189,7 @@
                                   <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                                   <Component id="jLabel35" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                                   <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -215,8 +215,8 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jButton27" min="-2" pref="94" max="-2" attributes="0"/>
-                                      <Component id="jButton28" min="-2" pref="94" max="-2" attributes="0"/>
+                                      <Component id="btnReportes" min="-2" pref="94" max="-2" attributes="0"/>
+                                      <Component id="btnHistorial" min="-2" pref="94" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -228,16 +228,16 @@
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                  <Component id="jButton29" min="-2" pref="89" max="-2" attributes="0"/>
+                                  <Component id="btnRespaldar" min="-2" pref="89" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jButton25" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
+                                      <Component id="btnImportar" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jButton24" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jButton23" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="btnExpedientes" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="btnUsuarios" alignment="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="jButton26" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnBuscar" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -252,14 +252,14 @@
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jButton31" min="-2" pref="94" max="-2" attributes="0"/>
+                                  <Component id="btnRestaurar" min="-2" pref="94" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel35" min="-2" pref="22" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jButton32" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jButton30" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnAyuda" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnInsti" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -283,7 +283,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton23">
+        <Component class="javax.swing.JButton" name="btnUsuarios">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/iconos/agregar-usuario.png"/>
@@ -309,7 +309,7 @@
             <Property name="text" type="java.lang.String" value="Gestionar Usuarios"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton24">
+        <Component class="javax.swing.JButton" name="btnExpedientes">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/iconos/documentacion.png"/>
@@ -328,7 +328,7 @@
             <Property name="text" type="java.lang.String" value="Gestionar Expedientes"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton25">
+        <Component class="javax.swing.JButton" name="btnImportar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/iconos/importacion.png"/>
@@ -347,7 +347,7 @@
             <Property name="text" type="java.lang.String" value="Importar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton26">
+        <Component class="javax.swing.JButton" name="btnBuscar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/iconos/busqueda.png"/>
@@ -366,7 +366,7 @@
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton27">
+        <Component class="javax.swing.JButton" name="btnReportes">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/iconos/periodico.png"/>
@@ -385,7 +385,7 @@
             <Property name="text" type="java.lang.String" value="Historial"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton28">
+        <Component class="javax.swing.JButton" name="btnHistorial">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/iconos/calendario.png"/>
@@ -404,7 +404,7 @@
             <Property name="text" type="java.lang.String" value="Reportes"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton29">
+        <Component class="javax.swing.JButton" name="btnRespaldar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/iconos/base-de-datos.png"/>
@@ -430,7 +430,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton30">
+        <Component class="javax.swing.JButton" name="btnInsti">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/iconos/casa.png"/>
@@ -449,7 +449,7 @@
             <Property name="text" type="java.lang.String" value="Gestionar Instituciones"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton31">
+        <Component class="javax.swing.JButton" name="btnRestaurar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/iconos/restaurar-base-de-datos.png"/>
@@ -467,7 +467,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton32">
+        <Component class="javax.swing.JButton" name="btnAyuda">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/iconos/informacion.png"/>

@@ -44,26 +44,26 @@ public class formMenu extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         jPanel4 = new javax.swing.JPanel();
-        jButton23 = new javax.swing.JButton();
+        btnUsuarios = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
-        jButton24 = new javax.swing.JButton();
+        btnExpedientes = new javax.swing.JButton();
         jLabel26 = new javax.swing.JLabel();
-        jButton25 = new javax.swing.JButton();
+        btnImportar = new javax.swing.JButton();
         jLabel27 = new javax.swing.JLabel();
-        jButton26 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
-        jButton27 = new javax.swing.JButton();
+        btnReportes = new javax.swing.JButton();
         jLabel29 = new javax.swing.JLabel();
-        jButton28 = new javax.swing.JButton();
+        btnHistorial = new javax.swing.JButton();
         jLabel30 = new javax.swing.JLabel();
-        jButton29 = new javax.swing.JButton();
+        btnRespaldar = new javax.swing.JButton();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
-        jButton30 = new javax.swing.JButton();
+        btnInsti = new javax.swing.JButton();
         jLabel33 = new javax.swing.JLabel();
-        jButton31 = new javax.swing.JButton();
+        btnRestaurar = new javax.swing.JButton();
         jLabel34 = new javax.swing.JLabel();
-        jButton32 = new javax.swing.JButton();
+        btnAyuda = new javax.swing.JButton();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jToolBar3 = new javax.swing.JToolBar();
@@ -96,54 +96,54 @@ public class formMenu extends javax.swing.JFrame {
 
         jPanel4.setToolTipText("");
 
-        jButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/agregar-usuario.png"))); // NOI18N
-        jButton23.setBorderPainted(false);
-        jButton23.setContentAreaFilled(false);
-        jButton23.setDefaultCapable(false);
-        jButton23.setFocusPainted(false);
-        jButton23.setFocusable(false);
+        btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/agregar-usuario.png"))); // NOI18N
+        btnUsuarios.setBorderPainted(false);
+        btnUsuarios.setContentAreaFilled(false);
+        btnUsuarios.setDefaultCapable(false);
+        btnUsuarios.setFocusPainted(false);
+        btnUsuarios.setFocusable(false);
 
         jLabel25.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(0, 0, 51));
         jLabel25.setText("Gestionar Usuarios");
 
-        jButton24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/documentacion.png"))); // NOI18N
-        jButton24.setContentAreaFilled(false);
+        btnExpedientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/documentacion.png"))); // NOI18N
+        btnExpedientes.setContentAreaFilled(false);
 
         jLabel26.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(0, 0, 51));
         jLabel26.setText("Gestionar Expedientes");
 
-        jButton25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/importacion.png"))); // NOI18N
-        jButton25.setContentAreaFilled(false);
+        btnImportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/importacion.png"))); // NOI18N
+        btnImportar.setContentAreaFilled(false);
 
         jLabel27.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(0, 0, 51));
         jLabel27.setText("Importar");
 
-        jButton26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/busqueda.png"))); // NOI18N
-        jButton26.setContentAreaFilled(false);
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/busqueda.png"))); // NOI18N
+        btnBuscar.setContentAreaFilled(false);
 
         jLabel28.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(0, 0, 51));
         jLabel28.setText("Buscar");
 
-        jButton27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/periodico.png"))); // NOI18N
-        jButton27.setContentAreaFilled(false);
+        btnReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/periodico.png"))); // NOI18N
+        btnReportes.setContentAreaFilled(false);
 
         jLabel29.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(0, 0, 51));
         jLabel29.setText("Historial");
 
-        jButton28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/calendario.png"))); // NOI18N
-        jButton28.setContentAreaFilled(false);
+        btnHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/calendario.png"))); // NOI18N
+        btnHistorial.setContentAreaFilled(false);
 
         jLabel30.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(0, 0, 51));
         jLabel30.setText("Reportes");
 
-        jButton29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/base-de-datos.png"))); // NOI18N
-        jButton29.setContentAreaFilled(false);
+        btnRespaldar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/base-de-datos.png"))); // NOI18N
+        btnRespaldar.setContentAreaFilled(false);
 
         jLabel31.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(0, 0, 51));
@@ -151,21 +151,21 @@ public class formMenu extends javax.swing.JFrame {
 
         jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/logo_Probusqueda.png"))); // NOI18N
 
-        jButton30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/casa.png"))); // NOI18N
-        jButton30.setContentAreaFilled(false);
+        btnInsti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/casa.png"))); // NOI18N
+        btnInsti.setContentAreaFilled(false);
 
         jLabel33.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(0, 0, 51));
         jLabel33.setText("Gestionar Instituciones");
 
-        jButton31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/restaurar-base-de-datos.png"))); // NOI18N
-        jButton31.setContentAreaFilled(false);
+        btnRestaurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/restaurar-base-de-datos.png"))); // NOI18N
+        btnRestaurar.setContentAreaFilled(false);
 
         jLabel34.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(0, 0, 51));
 
-        jButton32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/informacion.png"))); // NOI18N
-        jButton32.setContentAreaFilled(false);
+        btnAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/informacion.png"))); // NOI18N
+        btnAyuda.setContentAreaFilled(false);
 
         jLabel35.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(0, 0, 51));
@@ -198,12 +198,12 @@ public class formMenu extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap(51, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel25))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(103, 103, 103)
-                                .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnExpedientes, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(83, 83, 83)
                                 .addComponent(jLabel26)))
@@ -216,16 +216,16 @@ public class formMenu extends javax.swing.JFrame {
                                             .addGroup(jPanel4Layout.createSequentialGroup()
                                                 .addGap(12, 12, 12)
                                                 .addComponent(jLabel27))
-                                            .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(btnImportar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addGap(81, 81, 81)
-                                        .addComponent(jButton30, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(btnInsti, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel4Layout.createSequentialGroup()
                                                 .addGap(102, 102, 102)
-                                                .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(104, 104, 104))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -235,30 +235,30 @@ public class formMenu extends javax.swing.JFrame {
                                             .addGroup(jPanel4Layout.createSequentialGroup()
                                                 .addGap(12, 12, 12)
                                                 .addComponent(jLabel30))
-                                            .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel4Layout.createSequentialGroup()
                                                 .addGap(99, 99, 99)
-                                                .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(btnHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(101, 101, 101))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jLabel29)
                                                 .addGap(119, 119, 119)))
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnRespaldar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel31)))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addGap(99, 99, 99)
-                                        .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(85, 85, 85)
-                                        .addComponent(jButton32, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(btnRestaurar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(91, 91, 91)
+                                        .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(54, 54, 54)
                                 .addComponent(jLabel33)
                                 .addGap(70, 70, 70)
                                 .addComponent(jLabel35)
-                                .addGap(84, 84, 84)
+                                .addGap(97, 97, 97)
                                 .addComponent(jLabel36))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -277,8 +277,8 @@ public class formMenu extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel29)
@@ -287,14 +287,14 @@ public class formMenu extends javax.swing.JFrame {
                                 .addGap(6, 6, 6))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
-                                .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnRespaldar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton25, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnImportar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jButton24, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton23, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jButton26))
+                                        .addComponent(btnExpedientes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnUsuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(btnBuscar))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -304,13 +304,13 @@ public class formMenu extends javax.swing.JFrame {
                                     .addComponent(jLabel28))))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jButton31, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnRestaurar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton32)
-                                    .addComponent(jButton30))
+                                    .addComponent(btnAyuda)
+                                    .addComponent(btnInsti))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -377,16 +377,16 @@ public class formMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
-    private javax.swing.JButton jButton25;
-    private javax.swing.JButton jButton26;
-    private javax.swing.JButton jButton27;
-    private javax.swing.JButton jButton28;
-    private javax.swing.JButton jButton29;
-    private javax.swing.JButton jButton30;
-    private javax.swing.JButton jButton31;
-    private javax.swing.JButton jButton32;
+    private javax.swing.JButton btnAyuda;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnExpedientes;
+    private javax.swing.JButton btnHistorial;
+    private javax.swing.JButton btnImportar;
+    private javax.swing.JButton btnInsti;
+    private javax.swing.JButton btnReportes;
+    private javax.swing.JButton btnRespaldar;
+    private javax.swing.JButton btnRestaurar;
+    private javax.swing.JButton btnUsuarios;
     private javax.swing.JButton jButton33;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
