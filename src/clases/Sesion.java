@@ -23,22 +23,6 @@ public class Sesion extends Conexion{
         this.nivel = nivel;
     }
 
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public String getContra() {
-        return contra;
-    }
-
-    public void setContra(String contra) {
-        this.contra = contra;
-    }
-
     public String getNivel() {
         return nivel;
     }
