@@ -111,6 +111,11 @@ public class formMenu extends javax.swing.JFrame {
 
         btnExpedientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/documentacion.png"))); // NOI18N
         btnExpedientes.setContentAreaFilled(false);
+        btnExpedientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExpedientesActionPerformed(evt);
+            }
+        });
 
         jLabel26.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(0, 0, 51));
@@ -347,6 +352,10 @@ public class formMenu extends javax.swing.JFrame {
         formUsuarios usuarios = new formUsuarios();
         usuarios.setVisible(true);
     }//GEN-LAST:event_btnUsuariosActionPerformed
+
+    private void btnExpedientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpedientesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExpedientesActionPerformed
 
     /**
      * @param args the command line arguments

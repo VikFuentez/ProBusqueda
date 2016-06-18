@@ -6,48 +6,55 @@ import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author manu_
- */
-public class Usuario extends Conexion{
+
+public class Usuario extends Conexion
+{
     private String nombre;
     private String username;
     private String contra;
     private String nivel;
     private String estado;
 
-    public Usuario() {
+    public Usuario() 
+    {
+        
     }
 
-    public Usuario(String nombre, String username, String contra, String nivel) {
+    public Usuario(String nombre, String username, String contra, String nivel) 
+    {
         this.nombre = nombre;
         this.username = username;
         this.contra = contra;
         this.nivel = nivel;
     }
 
-    public String getNombre() {
+    public String getNombre() 
+    {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre(String nombre) 
+    {
         this.nombre = nombre;
     }
 
-    public String getUsername() {
+    public String getUsername() 
+    {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(String username) 
+    {
         this.username = username;
     }
 
-    public String getContra() {
+    public String getContra() 
+    {
         return contra;
     }
 
-    public void setContra(String contra) {
+    public void setContra(String contra) 
+    {
         this.contra = contra;
     }
 
@@ -55,33 +62,42 @@ public class Usuario extends Conexion{
         return nivel;
     }
 
-    public void setNivel(String nivel) {
+    public void setNivel(String nivel) 
+    {
         this.nivel = nivel;
     }
 
-    public String getEstado() {
+    
+    public String getEstado() 
+    {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(String estado)
+    {
         this.estado = estado;
     }
     
     public void agregar(String nombre, String user, String contra, String nivel, String estado){
-        if(nivel.equals("Administrador")){
+        if(nivel.equals("Administrador"))
+        {
             this.setNivel("1");
         }
-        else if(nivel.equals("Digitalizador")){
+        else if(nivel.equals("Digitalizador"))
+        {
             this.setNivel("2");
         }
-        else if(nivel.equals("Consultor")){
+        else if(nivel.equals("Consultor"))
+        {
             this.setNivel("3");
         }
         
-        if(estado.equals("Activo")){
+        if(estado.equals("Activo"))
+        {
             this.setEstado("1");
         }
-        else if(estado.equals("Inactivo")){
+        else if(estado.equals("Inactivo"))
+        {
             this.setEstado("2");
         }
         
@@ -90,11 +106,14 @@ public class Usuario extends Conexion{
         
     }
     
-    public void modificar(){
+    public void modificar()
+    {
     }
     
-    public JTable mostrar(JTable tabla){
-        try {
+    public JTable mostrar(JTable tabla)
+    {
+        try 
+        {
             DefaultTableModel tbl = new DefaultTableModel();
             Object[] fila = new Object[4];
             tbl.addColumn("Nombre");
@@ -103,21 +122,27 @@ public class Usuario extends Conexion{
             tbl.addColumn("Estado");
             tabla.setModel(tbl);
             ResultSet rs = this.consultar("SELECT * FROM usuario");
-            while(rs.next()){
+            while(rs.next())
+            {
                 
-                if(rs.getInt(5)==1){
+                if(rs.getInt(5)==1)
+                {
                     fila[2]="Administrador";
                 }
-                else if(rs.getInt(5)==2){
+                else if(rs.getInt(5)==2)
+                {
                     fila[2]="Digitalizador";
                 }
-                else if(rs.getInt(5)==3){
+                else if(rs.getInt(5)==3)
+                {
                     fila[2]="Consultor";
                 }
-                if(rs.getInt(6)==1){
+                if(rs.getInt(6)==1)
+                {
                     fila[3]="Activo";
                 }
-                else if(rs.getInt(6)==2){
+                else if(rs.getInt(6)==2)
+                {
                     fila[3]="Inactivo";
                 }
                 fila[0]=rs.getString("nombre_usuario");
@@ -126,14 +151,17 @@ public class Usuario extends Conexion{
             }
             
             tabla.setModel(tbl);
-        } catch (SQLException ex) {
+        } catch (SQLException ex) 
+        {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         return tabla;
     }
-    public JTable filtrar(JTable tabla, String datos){
+    public JTable filtrar(JTable tabla, String datos)
+    {
         int contador=0;
-        try {
+        try 
+        {
             DefaultTableModel tbl = new DefaultTableModel();
             Object[] fila = new Object[4];
             tbl.addColumn("Nombre");
@@ -142,32 +170,40 @@ public class Usuario extends Conexion{
             tbl.addColumn("Estado");
             tabla.setModel(tbl);
             ResultSet rs = this.consultar("SELECT * FROM usuario WHERE id_usuario LIKE '%"+datos+"%' OR nombre_usuario LIKE '%"+datos+"%' OR user LIKE '%"+datos+"%' OR nivel LIKE '%"+datos+"%'");
-            while(rs.next()){
+            while(rs.next())
+            {
                 contador++;
-                if(rs.getInt(5)==1){
+                if(rs.getInt(5)==1)
+                {
                     fila[2]="Administrador";
                 }
-                else if(rs.getInt(5)==2){
+                else if(rs.getInt(5)==2)
+                {
                     fila[2]="Digitalizador";
                 }
-                else if(rs.getInt(5)==3){
+                else if(rs.getInt(5)==3)
+                {
                     fila[2]="Consultor";
                 }
-                if(rs.getInt(6)==1){
+                if(rs.getInt(6)==1)
+                {
                     fila[3]="Activo";
                 }
-                else if(rs.getInt(6)==2){
+                else if(rs.getInt(6)==2)
+                {
                     fila[3]="Inactivo";
                 }
                 fila[0]=rs.getString("nombre_usuario");
                 fila[1]=rs.getString("user");
                 tbl.addRow(fila);
             }
-            if(contador==0){
+            if(contador==0)
+            {
                 return null;
             }
             tabla.setModel(tbl);
-        } catch (SQLException ex) {
+        } catch (SQLException ex) 
+        {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
         return tabla;
