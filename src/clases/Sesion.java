@@ -22,7 +22,7 @@ public class Sesion extends Conexion{
         this.contra = contra;
         this.nivel = nivel;
     }
-
+    
     public String getNivel() {
         return nivel;
     }

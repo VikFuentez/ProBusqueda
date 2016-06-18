@@ -4,7 +4,10 @@ package vistas;
 import clases.Sesion;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import javax.swing.InputMap;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -39,6 +42,8 @@ public class Logueo extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
         txtPass = new javax.swing.JPasswordField();
+        lblRequerido1 = new javax.swing.JLabel();
+        lblRequerido2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio Sesión");
@@ -47,6 +52,11 @@ public class Logueo extends javax.swing.JFrame {
         setIconImage(getIconImage());
         setLocation(new java.awt.Point(512, 256));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         btnIniciar.setBackground(new java.awt.Color(0, 0, 0));
         btnIniciar.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -59,8 +69,21 @@ public class Logueo extends javax.swing.JFrame {
                 btnIniciarActionPerformed(evt);
             }
         });
+        btnIniciar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnIniciarKeyPressed(evt);
+            }
+        });
 
         txtUser.setSelectionColor(new java.awt.Color(0, 0, 0));
+        txtUser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtUserFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtUserFocusLost(evt);
+            }
+        });
         txtUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUserActionPerformed(evt);
@@ -94,11 +117,30 @@ public class Logueo extends javax.swing.JFrame {
 
         txtPass.setSelectedTextColor(new java.awt.Color(255, 255, 255));
         txtPass.setSelectionColor(new java.awt.Color(0, 0, 0));
+        txtPass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPassFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPassFocusLost(evt);
+            }
+        });
+        txtPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassActionPerformed(evt);
+            }
+        });
         txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPassKeyTyped(evt);
             }
         });
+
+        lblRequerido1.setForeground(new java.awt.Color(255, 51, 51));
+        lblRequerido1.setText("Requerido para el inicio A-z 0-9");
+
+        lblRequerido2.setForeground(new java.awt.Color(255, 51, 51));
+        lblRequerido2.setText("Requerido para el inicio A-z 0-9");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,26 +149,29 @@ public class Logueo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(193, 193, 193)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(111, 111, 111)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(21, 21, 21)
-                                    .addComponent(btnSalir)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(btnIniciar, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(txtUser)
-                            .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addComponent(jLabel4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(jLabel3)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblRequerido1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(21, 21, 21)
+                                        .addComponent(btnSalir)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnIniciar, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addComponent(txtUser)
+                                .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+                            .addComponent(lblRequerido2))))
                 .addContainerGap(124, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -140,11 +185,15 @@ public class Logueo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblRequerido1)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblRequerido2)
+                .addGap(20, 20, 20)
                 .addComponent(btnIniciar)
                 .addGap(18, 18, 18)
                 .addComponent(btnSalir)
@@ -175,27 +224,41 @@ public class Logueo extends javax.swing.JFrame {
         try{
             Sesion sesion = new Sesion();
             formMenu menuAdmin = new formMenu();
-            int res = sesion.iniciar(this.txtUser.getText(), this.txtPass.getText());
-            if(res==1){
-                this.setVisible(false);
-                JOptionPane.showMessageDialog(null, "Bienvenido "+this.txtUser.getText());
-                menuAdmin.setVisible(true);
+            if(this.txtUser.getText().equals("") && this.txtPass.getText().equals("")){
+                this.lblRequerido1.setVisible(true);
+                this.lblRequerido2.setVisible(true);
             }
-            else if(res==2){
-            /**
-             *AQUI IRIAN LOS FORM DE LOS OTROS NIVELES SI ES 2 SERIA DIGITALIZADOR -----//REFERNCIA CLASE SESION--- 
-             */
+            else if(this.txtUser.getText().equals("")){
+                this.lblRequerido1.setVisible(true);
             }
-            else if(res==3){
-            /**
-            *AQUI IRIAN LOS FORM DE LOS OTROS NIVELES SI ES 3 SERIA CONSULTOR -----//REFERNCIA CLASE SESION--- 
-            */
+            else if (this.txtPass.getText().equals("")){
+                
+                this.lblRequerido2.setVisible(true);
+            }
+            else{
+                int res = sesion.iniciar(this.txtUser.getText(), this.txtPass.getText());
+                if(res==1){
+                    this.setVisible(false);
+                    menuAdmin.setVisible(true);
+                }
+                else if(res==2){
+                 /**
+                 *AQUI IRIAN LOS FORM DE LOS OTROS NIVELES SI ES 2 SERIA DIGITALIZADOR -----//REFERNCIA CLASE SESION--- 
+                 */
+                }
+                else if(res==3){
+                /**
+                *AQUI IRIAN LOS FORM DE LOS OTROS NIVELES SI ES 3 SERIA CONSULTOR -----//REFERNCIA CLASE SESION--- 
+                */
+                }
             }
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "Datos erroneos vuelve a intentarlo");
             this.txtUser.setText("");
             this.txtPass.setText("");
+            this.lblRequerido1.setVisible(false);
+            this.lblRequerido2.setVisible(false);
             
         }
         
@@ -210,6 +273,42 @@ public class Logueo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtPassKeyTyped
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        this.lblRequerido1.setVisible(false);
+        this.lblRequerido2.setVisible(false);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
+        
+    }//GEN-LAST:event_txtPassActionPerformed
+
+    private void txtUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusGained
+        this.lblRequerido1.setVisible(false);
+    }//GEN-LAST:event_txtUserFocusGained
+
+    private void txtPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusGained
+        this.lblRequerido2.setVisible(false);
+    }//GEN-LAST:event_txtPassFocusGained
+
+    private void txtUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusLost
+        if(this.txtUser.getText().equals("")){
+            this.lblRequerido1.setVisible(true);
+        }
+    }//GEN-LAST:event_txtUserFocusLost
+
+    private void txtPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPassFocusLost
+        if(this.txtPass.getText().equals("")){                            
+            this.lblRequerido2.setVisible(true);
+        } 
+    }//GEN-LAST:event_txtPassFocusLost
+
+    private void btnIniciarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnIniciarKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+              btnIniciarActionPerformed(null);
+        }  
+    }//GEN-LAST:event_btnIniciarKeyPressed
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -252,6 +351,8 @@ public class Logueo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel lblRequerido1;
+    private javax.swing.JLabel lblRequerido2;
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
