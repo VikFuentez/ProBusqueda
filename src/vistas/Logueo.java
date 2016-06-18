@@ -188,7 +188,6 @@ public class Logueo extends javax.swing.JFrame {
         if((tecla<'0' || tecla>'9')== tecla<'A'||tecla>'Z' && tecla<'a'||tecla>'z'){
             evt.consume();
         }
-   
     }//GEN-LAST:event_txtUserKeyTyped
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed

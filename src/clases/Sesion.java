@@ -10,22 +10,27 @@ import javax.swing.JOptionPane;
 public class Sesion extends Conexion{
     private String nivel;
     
-    public Sesion() {
+    public Sesion() 
+    {
     }
 
-    public Sesion(String user, String contra, String nivel) {
+    public Sesion(String user, String contra, String nivel)
+    {
         this.nivel = nivel;
     }
     
-    public String getNivel() {
+    public String getNivel() 
+    {
         return nivel;
     }
 
-    public void setNivel(String nivel) {
+    public void setNivel(String nivel) 
+    {
         this.nivel = nivel;
     }
     
-    public int iniciar(String us, String contra){
+    public int iniciar(String us, String contra)
+    {
         int bandera=0;
         
         try {
