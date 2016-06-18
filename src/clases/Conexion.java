@@ -1,8 +1,6 @@
 package clases;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author manu_
@@ -39,16 +37,31 @@ public class Conexion {
         
     }
     
-    public boolean ejecutar(String sql){
+    public boolean ejecutar(String sql, String mensaje){
         this.conectar();
         try {
             PreparedStatement res = cone.prepareStatement(sql);
             res.executeUpdate();
+            JOptionPane.showMessageDialog(null, mensaje);
         } 
         catch (SQLException ex) {
             return false;
         }
         this.desconectar();
         return true;
+    }  
+    
+    public ResultSet consultar(String sql){
+        this.conectar();
+        try {
+            Statement st = cone.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            return rs;
+        } 
+        catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo ejecutar la consulta");
+        }
+        this.desconectar();
+        return null;
     }  
 }

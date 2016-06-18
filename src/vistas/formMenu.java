@@ -28,9 +28,6 @@ public class formMenu extends javax.swing.JFrame {
     Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("iconos/log2.png"));
     return retValue;
     }
-    
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,7 +64,7 @@ public class formMenu extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         jToolBar3 = new javax.swing.JToolBar();
-        jButton33 = new javax.swing.JButton();
+        btnCerrarSe = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -102,6 +99,11 @@ public class formMenu extends javax.swing.JFrame {
         btnUsuarios.setDefaultCapable(false);
         btnUsuarios.setFocusPainted(false);
         btnUsuarios.setFocusable(false);
+        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuariosActionPerformed(evt);
+            }
+        });
 
         jLabel25.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(0, 0, 51));
@@ -177,14 +179,14 @@ public class formMenu extends javax.swing.JFrame {
 
         jToolBar3.setFloatable(false);
 
-        jButton33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/logout.png"))); // NOI18N
-        jButton33.setBorderPainted(false);
-        jButton33.setFocusPainted(false);
-        jButton33.setFocusable(false);
-        jButton33.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton33.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar3.add(jButton33);
-        jButton33.getAccessibleContext().setAccessibleDescription("");
+        btnCerrarSe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/logout.png"))); // NOI18N
+        btnCerrarSe.setBorderPainted(false);
+        btnCerrarSe.setFocusPainted(false);
+        btnCerrarSe.setFocusable(false);
+        btnCerrarSe.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnCerrarSe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar3.add(btnCerrarSe);
+        btnCerrarSe.getAccessibleContext().setAccessibleDescription("");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -341,6 +343,11 @@ public class formMenu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+        formUsuarios usuarios = new formUsuarios();
+        usuarios.setVisible(true);
+    }//GEN-LAST:event_btnUsuariosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -379,6 +386,7 @@ public class formMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAyuda;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCerrarSe;
     private javax.swing.JButton btnExpedientes;
     private javax.swing.JButton btnHistorial;
     private javax.swing.JButton btnImportar;
@@ -387,7 +395,6 @@ public class formMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnRespaldar;
     private javax.swing.JButton btnRestaurar;
     private javax.swing.JButton btnUsuarios;
-    private javax.swing.JButton jButton33;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;

@@ -1,14 +1,10 @@
-
 package vistas;
 
 import clases.Sesion;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
-import javax.swing.InputMap;
 import javax.swing.JOptionPane;
-import javax.swing.KeyStroke;
-
 /**
  *
  * @author manu_
