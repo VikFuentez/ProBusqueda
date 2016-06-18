@@ -16,6 +16,7 @@ import java.awt.Toolkit;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 
 public class formUsuarios extends javax.swing.JFrame {
 
@@ -26,6 +27,7 @@ public class formUsuarios extends javax.swing.JFrame {
      */
     public formUsuarios() {
         initComponents();
+        this.jLabel7.setVisible(false);
         Usuario use = new Usuario();
         use.mostrar(this.tableUsuarios);
         /*Esto es la carga del comboNivel*/
@@ -95,6 +97,7 @@ public class formUsuarios extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         txtBusqueda = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestión de Usuarios");
@@ -281,6 +284,9 @@ public class formUsuarios extends javax.swing.JFrame {
                 .addGap(8, 8, 8))
         );
 
+        jLabel7.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel7.setText("No se ha encontrado ningun registro");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -292,6 +298,10 @@ public class formUsuarios extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addComponent(jLabel7)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,7 +310,9 @@ public class formUsuarios extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
@@ -372,14 +384,18 @@ public class formUsuarios extends javax.swing.JFrame {
 
     private void txtBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyTyped
         char tecla = evt.getKeyChar();
-        if((tecla<'0' || tecla>'9')== tecla<'A'||tecla>'Z' && tecla<'a'||tecla>'z'){
+        if(((tecla<'0' || tecla>'9')== tecla<'A'||tecla>'Z' && tecla<'a'||tecla>'z')&& tecla!=' '){
             evt.consume();
         }
     }//GEN-LAST:event_txtBusquedaKeyTyped
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         Usuario user = new Usuario();
-        user.filtrar(this.tableUsuarios, this.txtBusqueda.getText());
+        this.jLabel7.setVisible(false);
+        JTable contador=user.filtrar(this.tableUsuarios, this.txtBusqueda.getText());
+        if(contador==null){
+            this.jLabel7.setVisible(true);
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
@@ -431,6 +447,7 @@ public class formUsuarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

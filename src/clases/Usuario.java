@@ -94,7 +94,6 @@ public class Usuario extends Conexion{
     }
     
     public JTable mostrar(JTable tabla){
- 
         try {
             DefaultTableModel tbl = new DefaultTableModel();
             Object[] fila = new Object[4];
@@ -105,6 +104,7 @@ public class Usuario extends Conexion{
             tabla.setModel(tbl);
             ResultSet rs = this.consultar("SELECT * FROM usuario");
             while(rs.next()){
+                
                 if(rs.getInt(5)==1){
                     fila[2]="Administrador";
                 }
@@ -124,6 +124,7 @@ public class Usuario extends Conexion{
                 fila[1]=rs.getString("user");
                 tbl.addRow(fila);
             }
+            
             tabla.setModel(tbl);
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -131,6 +132,7 @@ public class Usuario extends Conexion{
         return tabla;
     }
     public JTable filtrar(JTable tabla, String datos){
+        int contador=0;
         try {
             DefaultTableModel tbl = new DefaultTableModel();
             Object[] fila = new Object[4];
@@ -141,6 +143,7 @@ public class Usuario extends Conexion{
             tabla.setModel(tbl);
             ResultSet rs = this.consultar("SELECT * FROM usuario WHERE id_usuario LIKE '%"+datos+"%' OR nombre_usuario LIKE '%"+datos+"%' OR user LIKE '%"+datos+"%' OR nivel LIKE '%"+datos+"%'");
             while(rs.next()){
+                contador++;
                 if(rs.getInt(5)==1){
                     fila[2]="Administrador";
                 }
@@ -159,6 +162,9 @@ public class Usuario extends Conexion{
                 fila[0]=rs.getString("nombre_usuario");
                 fila[1]=rs.getString("user");
                 tbl.addRow(fila);
+            }
+            if(contador==0){
+                return null;
             }
             tabla.setModel(tbl);
         } catch (SQLException ex) {
