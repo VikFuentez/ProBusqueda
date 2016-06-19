@@ -31,12 +31,10 @@ public class formUsuarios extends javax.swing.JFrame {
         
         /*Esto es la carga del comboNivel*/  
          usuario.comboNivel(this.cmbTipo);
-        /*Hasta aqui termina la carga*/
-        
         
         /*Esto es la carga del comboEstado*/
         usuario.comboEstado(this.cmbEstado);
-        /*Hasta aqui termina la carga*/
+
         this.btnEliminar.setEnabled(false);
         
         this.lblID.setVisible(false);
@@ -439,7 +437,6 @@ public class formUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioKeyTyped
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
-        Usuario us = new Usuario();
         if(this.txtNombre.getText().equals("") || this.txtUsuario.getText().equals("") || this.txtContraseña.getText().equals("") || this.txtContraseñaRepetir.getText().equals(""))
         {
             JOptionPane.showMessageDialog(null, "Necesitas llenar todos los campos para poder registrar un usuario");
@@ -448,8 +445,8 @@ public class formUsuarios extends javax.swing.JFrame {
         {
             if(this.txtContraseñaRepetir.getText().equals(this.txtContraseña.getText()))
             {
-                us.agregar(this.txtNombre.getText(), this.txtUsuario.getText(), this.txtContraseña.getText(), this.cmbTipo.getSelectedItem().toString(), this.cmbEstado.getSelectedItem().toString()); 
-                us.mostrar(this.tableUsuarios);
+                usuario.agregar(this.txtNombre.getText(), this.txtUsuario.getText(), this.txtContraseña.getText(), this.cmbTipo.getSelectedItem().toString(), this.cmbEstado.getSelectedItem().toString()); 
+                usuario.mostrar(this.tableUsuarios);
                 this.btnEliminar.setEnabled(false);
                 this.btnInsertar.setEnabled(true);
                 this.txtNombre.setText("");
