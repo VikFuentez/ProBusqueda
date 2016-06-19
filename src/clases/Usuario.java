@@ -3,61 +3,26 @@ package clases;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 
 public class Usuario extends Conexion
 {
-    private String nombre;
-    private String username;
-    private String contra;
     private String nivel;
     private String estado;
 
     public Usuario() 
-    {
-        
+    {     
     }
 
-    public Usuario(String nombre, String username, String contra, String nivel) 
-    {
-        this.nombre = nombre;
-        this.username = username;
-        this.contra = contra;
+    public Usuario(String nivel, String estado) {
         this.nivel = nivel;
+        this.estado = estado;
     }
-
-    public String getNombre() 
-    {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) 
-    {
-        this.nombre = nombre;
-    }
-
-    public String getUsername() 
-    {
-        return username;
-    }
-
-    public void setUsername(String username) 
-    {
-        this.username = username;
-    }
-
-    public String getContra() 
-    {
-        return contra;
-    }
-
-    public void setContra(String contra) 
-    {
-        this.contra = contra;
-    }
-
+    
     public String getNivel() {
         return nivel;
     }
@@ -106,8 +71,10 @@ public class Usuario extends Conexion
         
     }
     
-    public void modificar()
+    public void modificar(int id, String nombre,String user,int nivel, int estado)
     {
+        String sql="UPDATE usuario set nombre_usuario='"+nombre+"',user='"+user+"', nivel="+nivel+", id_estado="+estado+" where id_usuario="+id;
+        this.ejecutar(sql, "Usuario modificado correctamente");
     }
     
     public JTable mostrar(JTable tabla)
@@ -115,7 +82,8 @@ public class Usuario extends Conexion
         try 
         {
             DefaultTableModel tbl = new DefaultTableModel();
-            Object[] fila = new Object[4];
+            Object[] fila = new Object[5];
+            tbl.addColumn("ID Usuario");
             tbl.addColumn("Nombre");
             tbl.addColumn("Username");
             tbl.addColumn("Nivel");
@@ -127,26 +95,27 @@ public class Usuario extends Conexion
                 
                 if(rs.getInt(5)==1)
                 {
-                    fila[2]="Administrador";
+                    fila[3]="Administrador";
                 }
                 else if(rs.getInt(5)==2)
                 {
-                    fila[2]="Digitalizador";
+                    fila[3]="Digitalizador";
                 }
                 else if(rs.getInt(5)==3)
                 {
-                    fila[2]="Consultor";
+                    fila[3]="Consultor";
                 }
                 if(rs.getInt(6)==1)
                 {
-                    fila[3]="Activo";
+                    fila[4]="Activo";
                 }
                 else if(rs.getInt(6)==2)
                 {
-                    fila[3]="Inactivo";
+                    fila[4]="Inactivo";
                 }
-                fila[0]=rs.getString("nombre_usuario");
-                fila[1]=rs.getString("user");
+                fila[0]=rs.getInt("id_usuario");
+                fila[1]=rs.getString("nombre_usuario");
+                fila[2]=rs.getString("user");
                 tbl.addRow(fila);
             }
             
@@ -163,7 +132,8 @@ public class Usuario extends Conexion
         try 
         {
             DefaultTableModel tbl = new DefaultTableModel();
-            Object[] fila = new Object[4];
+            Object[] fila = new Object[5];
+            tbl.addColumn("ID Usuario");
             tbl.addColumn("Nombre");
             tbl.addColumn("Username");
             tbl.addColumn("Nivel");
@@ -175,26 +145,27 @@ public class Usuario extends Conexion
                 contador++;
                 if(rs.getInt(5)==1)
                 {
-                    fila[2]="Administrador";
+                    fila[3]="Administrador";
                 }
                 else if(rs.getInt(5)==2)
                 {
-                    fila[2]="Digitalizador";
+                    fila[3]="Digitalizador";
                 }
                 else if(rs.getInt(5)==3)
                 {
-                    fila[2]="Consultor";
+                    fila[3]="Consultor";
                 }
                 if(rs.getInt(6)==1)
                 {
-                    fila[3]="Activo";
+                    fila[4]="Activo";
                 }
                 else if(rs.getInt(6)==2)
                 {
-                    fila[3]="Inactivo";
+                    fila[4]="Inactivo";
                 }
-                fila[0]=rs.getString("nombre_usuario");
-                fila[1]=rs.getString("user");
+                fila[0]=rs.getInt("id_usuario");
+                fila[1]=rs.getString("nombre_usuario");
+                fila[2]=rs.getString("user");
                 tbl.addRow(fila);
             }
             if(contador==0)
@@ -208,11 +179,44 @@ public class Usuario extends Conexion
         }
         return tabla;
     }
-    public void eliminar(){
+    public void eliminar(int id)
+    {
+        String sql="DELETE FROM usuario WHERE id_usuario="+id;
+        this.ejecutar(sql, "Usuario eliminado correctamente");
     }
     
-    public void comboNivel(){
+    public ResultSet comboNivel(JComboBox combo){
+        try
+        {
+            ResultSet rs=this.consultar("SELECT * FROM niveles");
+            while(rs.next()){
+                combo.addItem(rs.getString("nombre_nivel"));
+            }
+            return rs;  
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Nose pudo cargar el Desplegable de Nivel");
+        }
         
+        return null;
+    }
+    
+    public ResultSet comboEstado(JComboBox combo){
+        try
+        {
+            ResultSet rs=this.consultar("SELECT * FROM estado");
+            while(rs.next()){
+                combo.addItem(rs.getString("estado"));
+            }
+            return rs;  
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, "Nose pudo cargar el Desplegable de Estado");
+        }
+        
+        return null;
     }
     
 }

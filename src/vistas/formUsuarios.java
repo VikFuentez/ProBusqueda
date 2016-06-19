@@ -9,61 +9,47 @@ package vistas;
  *
  * @author Cabrera
  */
-import clases.Conexion;
 import clases.Usuario;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class formUsuarios extends javax.swing.JFrame {
-
-    Conexion cn = new Conexion();
-    Connection cc = cn.conectar();
+    static Usuario usuario = new Usuario();
     /**
      * Creates new form formUsuarios
      */
     public formUsuarios() {
         initComponents();
+        
         this.jLabel7.setVisible(false);
-        Usuario use = new Usuario();
-        use.mostrar(this.tableUsuarios);
-        /*Esto es la carga del comboNivel*/
-        try {
-            Statement st = cc.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM niveles");
-            
-            while(rs.next()){
-                this.cmbTipo.addItem(rs.getString("nombre_nivel"));
-            }
-        } 
-        catch (SQLException ex) {
-            Logger.getLogger(formUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.lblContra.setVisible(false);
+
+        usuario.mostrar(this.tableUsuarios);
+        
+        /*Esto es la carga del comboNivel*/  
+         usuario.comboNivel(this.cmbTipo);
         /*Hasta aqui termina la carga*/
+        
         
         /*Esto es la carga del comboEstado*/
-        try {
-            Statement st2 = cc.createStatement();
-            ResultSet rs2= st2.executeQuery("SELECT * FROM estado");
-            while(rs2.next()){
-                this.cmbEstado.addItem(rs2.getString("estado"));
-            }
-        } 
-        catch (SQLException ex) {
-            Logger.getLogger(formUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        usuario.comboEstado(this.cmbEstado);
         /*Hasta aqui termina la carga*/
+        this.btnEliminar.setEnabled(false);
+        
+        this.lblID.setVisible(false);
+        this.txtID.setVisible(false);
+        this.btnEditar.setEnabled(false);
     }
     
     
+    @Override
     public  Image getIconImage()
     {
-    Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("iconos/agregar-usuario-icono.png"));
-    return retValue;
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("iconos/agregar-usuario-icono.png"));
+        return retValue;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,13 +77,16 @@ public class formUsuarios extends javax.swing.JFrame {
         txtNombre = new javax.swing.JTextField();
         cmbTipo = new javax.swing.JComboBox<>();
         txtUsuario = new javax.swing.JTextField();
-        txtContraseña = new javax.swing.JTextField();
-        txtContraseñaRepetir = new javax.swing.JTextField();
         cmbEstado = new javax.swing.JComboBox<>();
         btnInsertar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
+        txtID = new javax.swing.JTextField();
+        lblID = new javax.swing.JLabel();
+        lblContra = new javax.swing.JLabel();
+        txtContraseña = new javax.swing.JPasswordField();
+        txtContraseñaRepetir = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         txtBusqueda = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
@@ -129,6 +118,7 @@ public class formUsuarios extends javax.swing.JFrame {
 
         jToolBar2.setRollover(true);
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestión de Usuarios");
         setBackground(new java.awt.Color(153, 153, 153));
         setIconImage(getIconImage());
@@ -148,6 +138,11 @@ public class formUsuarios extends javax.swing.JFrame {
             }
         ));
         tableUsuarios.getTableHeader().setReorderingAllowed(false);
+        tableUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableUsuariosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableUsuarios);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
@@ -162,7 +157,6 @@ public class formUsuarios extends javax.swing.JFrame {
 
         jLabel2.setText("Tipo de usuario");
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel1.setText("Nombre");
 
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -171,26 +165,19 @@ public class formUsuarios extends javax.swing.JFrame {
             }
         });
 
+        cmbTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtUsuarioKeyTyped(evt);
             }
         });
 
-        txtContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtContraseñaKeyTyped(evt);
-            }
-        });
-
-        txtContraseñaRepetir.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtContraseñaRepetirKeyTyped(evt);
-            }
-        });
+        cmbEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         btnInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/mas.png"))); // NOI18N
         btnInsertar.setText("Insertar");
+        btnInsertar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInsertar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInsertarActionPerformed(evt);
@@ -199,20 +186,72 @@ public class formUsuarios extends javax.swing.JFrame {
 
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/editar.png"))); // NOI18N
         btnEditar.setText("Editar");
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/exit.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        txtID.setEnabled(false);
+
+        lblID.setText("ID usuario");
+
+        lblContra.setForeground(new java.awt.Color(0, 0, 0));
+        lblContra.setText("Las contraseñas no coinciden");
+
+        txtContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtContraseñaKeyTyped(evt);
+            }
+        });
+
+        txtContraseñaRepetir.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtContraseñaRepetirFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtContraseñaRepetirFocusLost(evt);
+            }
+        });
+        txtContraseñaRepetir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtContraseñaRepetirKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(125, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnInsertar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEliminar)
+                        .addGap(10, 10, 10))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -220,30 +259,30 @@ public class formUsuarios extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(lblID))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtContraseñaRepetir, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnInsertar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEliminar)
-                        .addGap(10, 10, 10)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblContra)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtContraseñaRepetir, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtContraseña, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cmbEstado, 0, 117, Short.MAX_VALUE)
+                                .addComponent(txtUsuario)
+                                .addComponent(cmbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtNombre)
+                                .addComponent(txtID, javax.swing.GroupLayout.Alignment.LEADING)))))
                 .addComponent(btnLimpiar)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblID))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -264,10 +303,12 @@ public class formUsuarios extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(txtContraseñaRepetir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblContra)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditar)
                     .addComponent(btnEliminar)
@@ -286,6 +327,7 @@ public class formUsuarios extends javax.swing.JFrame {
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-de-busqueda.png"))); // NOI18N
         btnBuscar.setText("Buscar");
+        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -322,32 +364,32 @@ public class formUsuarios extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(jLabel7))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(22, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(118, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(293, 293, 293))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -374,6 +416,12 @@ public class formUsuarios extends javax.swing.JFrame {
         if ((tecla<'A' || tecla>'Z' && tecla<'a' || tecla>'z')&& tecla!=' '){
             evt.consume();
         }
+        
+        if(this.txtNombre.getText().length()>140)
+        {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Has llegado a la cantidad maxima de caracteres permitidos por esta caja de texto");
+        }
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
@@ -382,34 +430,50 @@ public class formUsuarios extends javax.swing.JFrame {
         if((tecla<'0' || tecla>'9')== tecla<'A'||tecla>'Z' && tecla<'a'||tecla>'z'){
             evt.consume();
         }
+        
+        if(this.txtUsuario.getText().length()>25)
+        {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Has llegado a la cantidad maxima de caracteres permitidos por esta caja de texto");
+        }
     }//GEN-LAST:event_txtUsuarioKeyTyped
-
-    private void txtContraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseñaKeyTyped
-        char tecla = evt.getKeyChar();
-        
-        if((tecla<'0' || tecla>'9')== tecla<'A'||tecla>'Z' && tecla<'a'||tecla>'z'){
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtContraseñaKeyTyped
-
-    private void txtContraseñaRepetirKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseñaRepetirKeyTyped
-        char tecla = evt.getKeyChar();
-        
-        if((tecla<'0' || tecla>'9')== tecla<'A'||tecla>'Z' && tecla<'a'||tecla>'z'){
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtContraseñaRepetirKeyTyped
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
         Usuario us = new Usuario();
-        us.setNombre(this.txtNombre.getText());
-        us.setNivel(this.cmbTipo.getSelectedItem().toString());
-        us.setUsername(this.txtUsuario.getText());
-        us.setContra(this.txtContraseña.getText());
-        us.setEstado(this.cmbEstado.getSelectedItem().toString());
-        
-        us.agregar(us.getNombre(), us.getUsername(), us.getContra(), us.getNivel(), us.getEstado()); 
-        us.mostrar(this.tableUsuarios);
+        if(this.txtNombre.getText().equals("") || this.txtUsuario.getText().equals("") || this.txtContraseña.getText().equals("") || this.txtContraseñaRepetir.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Necesitas llenar todos los campos para poder registrar un usuario");
+        }
+        else
+        {
+            if(this.txtContraseñaRepetir.getText().equals(this.txtContraseña.getText()))
+            {
+                us.agregar(this.txtNombre.getText(), this.txtUsuario.getText(), this.txtContraseña.getText(), this.cmbTipo.getSelectedItem().toString(), this.cmbEstado.getSelectedItem().toString()); 
+                us.mostrar(this.tableUsuarios);
+                this.btnEliminar.setEnabled(false);
+                this.btnInsertar.setEnabled(true);
+                this.txtNombre.setText("");
+                this.txtContraseña.setText("");
+                this.txtContraseñaRepetir.setText("");
+                this.txtUsuario.setText("");
+                this.cmbEstado.setSelectedIndex(0);
+                this.cmbTipo.setSelectedIndex(0);
+                this.txtContraseña.setEnabled(true);
+                this.txtContraseñaRepetir.setEnabled(true);
+                this.btnEliminar.setEnabled(false);
+                this.txtBusqueda.setText("");
+                this.lblID.setVisible(false);
+                this.txtID.setVisible(false);
+                this.txtID.setText("");
+                this.btnEditar.setEnabled(false);
+                this.cmbEstado.setEnabled(true);
+                this.cmbTipo.setEnabled(true);
+            }
+            else
+            {
+                this.lblContra.setVisible(true);
+            }
+        }
     }//GEN-LAST:event_btnInsertarActionPerformed
 
     private void txtBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaKeyTyped
@@ -420,13 +484,224 @@ public class formUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBusquedaKeyTyped
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        Usuario user = new Usuario();
         this.jLabel7.setVisible(false);
-        JTable contador=user.filtrar(this.tableUsuarios, this.txtBusqueda.getText());
-        if(contador==null){
+        JTable contador = usuario.filtrar(this.tableUsuarios, this.txtBusqueda.getText());
+        this.btnEliminar.setEnabled(false);
+        if(contador == null)
+        {
             this.jLabel7.setVisible(true);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        DefaultTableModel tabla = (DefaultTableModel) this.tableUsuarios.getModel(); 
+        int a = this.tableUsuarios.getSelectedRow(); 
+        int codigo=Integer.parseInt(this.tableUsuarios.getValueAt(a, 0).toString());
+        String nombre=this.tableUsuarios.getValueAt(a, 1).toString();
+        if (a<0){ 
+            JOptionPane.showMessageDialog(null, "No has elejido a un usuario para poder eliminarlo");
+        }
+        else{
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Esta seguro que desea eliminar el usuario "+nombre+" con ID "+codigo+" ?"); 
+ 
+            if(confirmacion == JOptionPane.OK_OPTION) {
+                usuario.eliminar(codigo);
+                usuario.mostrar(this.tableUsuarios);
+                this.btnInsertar.setEnabled(true);
+                this.btnEliminar.setEnabled(false);
+            }
+        } 
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsuariosMouseClicked
+        DefaultTableModel tabla = (DefaultTableModel) this.tableUsuarios.getModel();
+        int select = this.tableUsuarios.getSelectedRow(); 
+        if(evt.getClickCount()==2)
+        {
+            this.btnEditar.setEnabled(true);
+            this.txtContraseña.setEnabled(false);
+            this.txtContraseñaRepetir.setEnabled(false);
+            this.btnEliminar.setEnabled(false);
+            this.btnInsertar.setEnabled(false);
+            
+            this.txtNombre.setEnabled(true);
+            this.txtUsuario.setEnabled(true);
+            this.cmbEstado.setEnabled(true);
+            this.cmbTipo.setEnabled(true);
+            
+            String id=this.tableUsuarios.getValueAt(select, 0).toString();
+            String nombre=this.tableUsuarios.getValueAt(select, 1).toString();
+            String user= this.tableUsuarios.getValueAt(select, 2).toString();
+            String cmbTipoUser = this.tableUsuarios.getValueAt(select, 3).toString();
+            String estado=this.tableUsuarios.getValueAt(select, 4).toString();
+            
+            this.txtID.setText(id);
+            this.txtNombre.setText(nombre);
+            this.txtUsuario.setText(user);
+            if(cmbTipoUser.equals("Administrador")){
+                this.cmbTipo.setSelectedIndex(0);
+            }
+            else if(cmbTipoUser.equals("Digitalizador")){
+                this.cmbTipo.setSelectedIndex(1);
+            }
+            else if(cmbTipoUser.equals("Consultor")){
+                this.cmbTipo.setSelectedIndex(2);
+            }
+            
+            if(estado.equals("Activo")){
+                this.cmbEstado.setSelectedIndex(0);
+            }
+            else if(estado.equals("Inactivo")){
+                this.cmbEstado.setSelectedIndex(1);
+            }  
+            
+        }
+        
+        if(evt.getClickCount()==1)
+        {
+            if(select>-1)
+            {
+                this.btnInsertar.setEnabled(false);
+                this.txtNombre.setEnabled(false);
+                this.txtUsuario.setEnabled(false);
+                this.txtContraseña.setEnabled(false);
+                this.txtContraseñaRepetir.setEnabled(false);
+                this.cmbEstado.setEnabled(false);
+                this.cmbTipo.setEnabled(false);
+                this.btnEliminar.setEnabled(true);
+                this.btnEditar.setEnabled(false);
+                
+                this.txtNombre.setText("");
+                this.txtBusqueda.setText("");
+                this.txtContraseña.setText("");
+                this.txtContraseñaRepetir.setText("");
+                this.txtUsuario.setText("");
+            }
+            else
+            {
+                this.btnInsertar.setEnabled(true);
+                this.btnEliminar.setEnabled(false);
+            }
+        }
+    }//GEN-LAST:event_tableUsuariosMouseClicked
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        int tipo=0,estado=0;
+        if(this.cmbTipo.getSelectedIndex()==0)
+        {
+            tipo=1;
+        }
+        else if(this.cmbTipo.getSelectedIndex()==1)
+        {
+            tipo=2;
+        }
+        else if(this.cmbTipo.getSelectedIndex()==2)
+        {
+            tipo=3;
+        }
+        
+        if(this.cmbEstado.getSelectedIndex()==0)
+        {
+            estado=1;
+        }
+        else if(this.cmbEstado.getSelectedIndex()==1)
+        {
+            estado=2;
+        }
+        
+        usuario.modificar(Integer.parseInt(this.txtID.getText()),this.txtNombre.getText(),this.txtUsuario.getText(),tipo,estado);
+        usuario.mostrar(this.tableUsuarios);
+        
+        this.txtContraseña.setEnabled(true);
+        this.txtContraseñaRepetir.setEnabled(true);
+        this.btnBuscar.setEnabled(true);
+        this.btnEliminar.setEnabled(false);
+        this.btnInsertar.setEnabled(true);
+        this.txtNombre.setText("");
+        this.txtBusqueda.setText("");
+        this.txtContraseña.setText("");
+        this.txtContraseñaRepetir.setText("");
+        this.txtUsuario.setText("");
+        this.cmbEstado.setSelectedIndex(0);
+        this.cmbTipo.setSelectedIndex(0);
+        this.lblID.setVisible(false);
+        this.txtID.setVisible(false);
+        this.txtID.setText("");
+        this.btnEditar.setEnabled(false);
+        this.cmbEstado.setEnabled(true);
+        this.cmbTipo.setEnabled(true);
+        this.txtNombre.setEnabled(true);
+        this.txtUsuario.setEnabled(true);
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        this.txtContraseña.setEnabled(true);
+        this.txtContraseñaRepetir.setEnabled(true);
+        this.btnBuscar.setEnabled(true);
+        this.btnEliminar.setEnabled(false);
+        this.btnInsertar.setEnabled(true);
+        this.txtNombre.setText("");
+        this.txtBusqueda.setText("");
+        this.txtContraseña.setText("");
+        this.txtContraseñaRepetir.setText("");
+        this.txtUsuario.setText("");
+        this.cmbEstado.setSelectedIndex(0);
+        this.cmbTipo.setSelectedIndex(0);
+        this.lblID.setVisible(false);
+        this.txtID.setVisible(false);
+        this.txtID.setText("");
+        this.btnEditar.setEnabled(false);
+        this.cmbEstado.setEnabled(true);
+        this.cmbTipo.setEnabled(true);
+        this.txtNombre.setEnabled(true);
+        this.txtUsuario.setEnabled(true);
+        this.jLabel7.setVisible(false);
+        this.lblContra.setVisible(false);
+ 
+        usuario.mostrar(this.tableUsuarios);       
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtContraseñaRepetirFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseñaRepetirFocusGained
+        this.lblContra.setVisible(false);
+    }//GEN-LAST:event_txtContraseñaRepetirFocusGained
+
+    private void txtContraseñaRepetirFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtContraseñaRepetirFocusLost
+        if(this.txtContraseñaRepetir.getText().equals(this.txtContraseña.getText()))
+        {
+            this.lblContra.setVisible(false);
+        }
+        else{
+            this.lblContra.setVisible(true);
+        }
+    }//GEN-LAST:event_txtContraseñaRepetirFocusLost
+
+    private void txtContraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseñaKeyTyped
+        char tecla = evt.getKeyChar();
+        
+        if((tecla<'0' || tecla>'9')== tecla<'A'||tecla>'Z' && tecla<'a'||tecla>'z'){
+            evt.consume();
+        }
+        
+        if(this.txtContraseña.getText().length()>15)
+        {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Has llegado a la cantidad maxima de caracteres permitidos por esta caja de texto");
+        }
+    }//GEN-LAST:event_txtContraseñaKeyTyped
+
+    private void txtContraseñaRepetirKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseñaRepetirKeyTyped
+        char tecla = evt.getKeyChar();
+        
+        if((tecla<'0' || tecla>'9')== tecla<'A'||tecla>'Z' && tecla<'a'||tecla>'z'){
+            evt.consume();
+        }
+        
+        if(this.txtContraseñaRepetir.getText().length()>15)
+        {
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Has llegado a la cantidad maxima de caracteres permitidos por esta caja de texto");
+        }
+    }//GEN-LAST:event_txtContraseñaRepetirKeyTyped
 
     /**
      * @param args the command line arguments
@@ -486,10 +761,13 @@ public class formUsuarios extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
+    private javax.swing.JLabel lblContra;
+    private javax.swing.JLabel lblID;
     private javax.swing.JTable tableUsuarios;
     private javax.swing.JTextField txtBusqueda;
-    private javax.swing.JTextField txtContraseña;
-    private javax.swing.JTextField txtContraseñaRepetir;
+    private javax.swing.JPasswordField txtContraseña;
+    private javax.swing.JPasswordField txtContraseñaRepetir;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

@@ -24,7 +24,8 @@ public class Conexion
             {
                 System.out.println("Conexion establecida");
             }
-        } catch(ClassNotFoundException | SQLException e)
+        } 
+        catch(ClassNotFoundException | SQLException e)
         {
             System.out.println("Error al conectar "+e);
         }

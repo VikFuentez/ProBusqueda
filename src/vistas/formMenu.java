@@ -96,9 +96,15 @@ public class formMenu extends javax.swing.JFrame {
         btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/agregar-usuario.png"))); // NOI18N
         btnUsuarios.setBorderPainted(false);
         btnUsuarios.setContentAreaFilled(false);
+        btnUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnUsuarios.setDefaultCapable(false);
         btnUsuarios.setFocusPainted(false);
         btnUsuarios.setFocusable(false);
+        btnUsuarios.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                btnUsuariosFocusGained(evt);
+            }
+        });
         btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUsuariosActionPerformed(evt);
@@ -111,6 +117,7 @@ public class formMenu extends javax.swing.JFrame {
 
         btnExpedientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/documentacion.png"))); // NOI18N
         btnExpedientes.setContentAreaFilled(false);
+        btnExpedientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExpedientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExpedientesActionPerformed(evt);
@@ -123,6 +130,7 @@ public class formMenu extends javax.swing.JFrame {
 
         btnImportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/importacion.png"))); // NOI18N
         btnImportar.setContentAreaFilled(false);
+        btnImportar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel27.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(0, 0, 51));
@@ -130,6 +138,7 @@ public class formMenu extends javax.swing.JFrame {
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/busqueda.png"))); // NOI18N
         btnBuscar.setContentAreaFilled(false);
+        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel28.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(0, 0, 51));
@@ -137,6 +146,7 @@ public class formMenu extends javax.swing.JFrame {
 
         btnReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/periodico.png"))); // NOI18N
         btnReportes.setContentAreaFilled(false);
+        btnReportes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel29.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(0, 0, 51));
@@ -144,6 +154,7 @@ public class formMenu extends javax.swing.JFrame {
 
         btnHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/calendario.png"))); // NOI18N
         btnHistorial.setContentAreaFilled(false);
+        btnHistorial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel30.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(0, 0, 51));
@@ -151,6 +162,7 @@ public class formMenu extends javax.swing.JFrame {
 
         btnRespaldar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/base-de-datos.png"))); // NOI18N
         btnRespaldar.setContentAreaFilled(false);
+        btnRespaldar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel31.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(0, 0, 51));
@@ -160,6 +172,7 @@ public class formMenu extends javax.swing.JFrame {
 
         btnInsti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/casa.png"))); // NOI18N
         btnInsti.setContentAreaFilled(false);
+        btnInsti.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel33.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(0, 0, 51));
@@ -167,12 +180,14 @@ public class formMenu extends javax.swing.JFrame {
 
         btnRestaurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/restaurar-base-de-datos.png"))); // NOI18N
         btnRestaurar.setContentAreaFilled(false);
+        btnRestaurar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel34.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(0, 0, 51));
 
         btnAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/informacion.png"))); // NOI18N
         btnAyuda.setContentAreaFilled(false);
+        btnAyuda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel35.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(0, 0, 51));
@@ -186,6 +201,7 @@ public class formMenu extends javax.swing.JFrame {
 
         btnCerrarSe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/logout.png"))); // NOI18N
         btnCerrarSe.setBorderPainted(false);
+        btnCerrarSe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCerrarSe.setFocusPainted(false);
         btnCerrarSe.setFocusable(false);
         btnCerrarSe.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -356,6 +372,10 @@ public class formMenu extends javax.swing.JFrame {
     private void btnExpedientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpedientesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExpedientesActionPerformed
+
+    private void btnUsuariosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnUsuariosFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUsuariosFocusGained
 
     /**
      * @param args the command line arguments
