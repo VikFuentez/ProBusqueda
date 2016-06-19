@@ -54,7 +54,7 @@ public class Institucion extends Conexion{
     
     public void modificar(int id, String nombre, String abreviatura,  int estado)
     {
-        String sql="UPDATE institucion_afiliadas set nombre='"+nombre+"',abreviatura='"+abreviatura+"', id_estado="+estado+" where id_usuario="+id;
+        String sql="UPDATE institucion_afiliadas set nombre='"+nombre+"',abreviatura='"+abreviatura+"', id_estado="+estado+" where id_institucion="+id;
         this.ejecutar(sql, "Institución modificado correctamente");
     }
     
@@ -94,6 +94,7 @@ public class Institucion extends Conexion{
         }
         return tabla;
     }
+    
     public JTable filtrar(JTable tabla, String datos)
     {
         int contador=0;
@@ -103,11 +104,10 @@ public class Institucion extends Conexion{
             Object[] fila = new Object[4];
             tbl.addColumn("ID Usuario");
             tbl.addColumn("Nombre");
-            tbl.addColumn("Username");
-            tbl.addColumn("Nivel");
+            tbl.addColumn("Abreviatura");
             tbl.addColumn("Estado");
             tabla.setModel(tbl);
-            ResultSet rs = this.consultar("SELECT * FROM institucion_afiliadas WHERE id_institucion LIKE '%"+datos+"%' OR nombre LIKE '%"+datos+"%' OR abreviatura LIKE '%"+datos+"%' OR id_estado LIKE %"+datos+"%");
+            ResultSet rs = this.consultar("SELECT * FROM institucion_afiliadas WHERE id_institucion LIKE '%"+datos+"%' OR nombre LIKE '%"+datos+"%' OR abreviatura LIKE '%"+datos+"%' OR id_estado LIKE '%"+datos+"%'");
             while(rs.next())
             {
                 contador++;

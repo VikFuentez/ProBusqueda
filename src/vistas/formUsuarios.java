@@ -135,6 +135,7 @@ public class formUsuarios extends javax.swing.JFrame {
 
             }
         ));
+        tableUsuarios.getTableHeader().setResizingAllowed(false);
         tableUsuarios.getTableHeader().setReorderingAllowed(false);
         tableUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -488,6 +489,13 @@ public class formUsuarios extends javax.swing.JFrame {
         {
             this.jLabel7.setVisible(true);
         }
+        this.txtID.setText("");
+        this.txtNombre.setText("");
+        this.txtUsuario.setText("");
+        this.txtContraseña.setText("");
+        this.txtContraseñaRepetir.setText("");
+        this.cmbEstado.setSelectedIndex(0);
+        this.cmbTipo.setSelectedIndex(0);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed

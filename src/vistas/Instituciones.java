@@ -17,7 +17,8 @@ public class Instituciones extends javax.swing.JFrame {
     
     public Instituciones() {
         initComponents();
-        
+        this.lblIndicaciones1.setVisible(false);
+        this.lblIndicaciones2.setVisible(false);
         this.txtIDInsti.setVisible(false);
         this.lblID.setVisible(false);
         
@@ -56,6 +57,8 @@ public class Instituciones extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         cmbEstado = new javax.swing.JComboBox<>();
+        lblIndicaciones1 = new javax.swing.JLabel();
+        lblIndicaciones2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
@@ -64,6 +67,7 @@ public class Instituciones extends javax.swing.JFrame {
         tblInstituciones = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -75,6 +79,18 @@ public class Instituciones extends javax.swing.JFrame {
         jLabel3.setText("Abreviatura");
 
         jLabel4.setText("Estado");
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
+        txtAbreviatura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAbreviaturaKeyTyped(evt);
+            }
+        });
 
         btnInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/mas.png"))); // NOI18N
         btnInsertar.setText("Insertar");
@@ -112,6 +128,12 @@ public class Instituciones extends javax.swing.JFrame {
             }
         });
 
+        lblIndicaciones1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/error.png"))); // NOI18N
+        lblIndicaciones1.setText("texto ");
+
+        lblIndicaciones2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/error.png"))); // NOI18N
+        lblIndicaciones2.setText("texto");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -119,16 +141,16 @@ public class Instituciones extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(36, 36, 36)
                         .addComponent(btnInsertar)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnEliminar)
-                        .addGap(10, 10, 10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnLimpiar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
+                        .addGap(163, 163, 163)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblID)
                             .addComponent(jLabel2)
@@ -136,16 +158,18 @@ public class Instituciones extends javax.swing.JFrame {
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                            .addComponent(txtIDInsti, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                            .addComponent(txtAbreviatura, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                            .addComponent(cmbEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblIndicaciones1)
+                            .addComponent(lblIndicaciones2)
+                            .addComponent(txtNombre)
+                            .addComponent(txtAbreviatura)
+                            .addComponent(cmbEstado, 0, 123, Short.MAX_VALUE)
+                            .addComponent(txtIDInsti))))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblID)
                     .addComponent(txtIDInsti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -153,24 +177,35 @@ public class Instituciones extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblIndicaciones1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAbreviatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblIndicaciones2)
+                .addGap(4, 4, 4)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditar)
-                    .addComponent(btnEliminar)
-                    .addComponent(btnLimpiar)
-                    .addComponent(btnInsertar))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnEliminar)
+                        .addComponent(btnEditar)
+                        .addComponent(btnInsertar)))
+                .addGap(18, 18, 18))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
+
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyTyped(evt);
+            }
+        });
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/lupa-de-busqueda.png"))); // NOI18N
         btnBuscar.setText("Buscar");
@@ -187,9 +222,9 @@ public class Instituciones extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtBuscar)
                 .addGap(18, 18, 18)
-                .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -213,15 +248,14 @@ public class Instituciones extends javax.swing.JFrame {
         };
         tblInstituciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
 
             }
         ));
+        tblInstituciones.getTableHeader().setResizingAllowed(false);
+        tblInstituciones.getTableHeader().setReorderingAllowed(false);
         tblInstituciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblInstitucionesMouseClicked(evt);
@@ -234,33 +268,28 @@ public class Instituciones extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(69, 69, 69)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(183, 183, 183)
-                            .addComponent(lblRegistro)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(lblRegistro))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblRegistro)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -303,6 +332,18 @@ public class Instituciones extends javax.swing.JFrame {
         insti.modificar(Integer.parseInt(this.txtIDInsti.getText()), this.txtNombre.getText(),this.txtAbreviatura.getText(),estado);
         insti.mostrar(this.tblInstituciones);
         
+        this.btnEliminar.setEnabled(false);
+        this.btnInsertar.setEnabled(true);
+        this.txtNombre.setText("");
+        this.txtBuscar.setText("");
+        this.txtAbreviatura.setText("");
+        this.cmbEstado.setSelectedIndex(0);
+        this.lblID.setVisible(false);
+        this.txtIDInsti.setVisible(false);
+        this.txtIDInsti.setText("");
+        this.btnEditar.setEnabled(false);
+        this.cmbEstado.setEnabled(true);
+        this.txtNombre.setEnabled(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -314,10 +355,11 @@ public class Instituciones extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No has elejido a un usuario para poder eliminarlo");
         }
         else{
-            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Esta seguro que desea eliminar el usuario "+nombre+" con ID "+codigo+" ?");
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Esta seguro que desea eliminar la Institución "+nombre+" con ID "+codigo+" ?");
 
             if(confirmacion == JOptionPane.OK_OPTION) {
-               
+               insti.eliminar(codigo);
+               insti.mostrar(this.tblInstituciones);
             }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -349,7 +391,11 @@ public class Instituciones extends javax.swing.JFrame {
         if(contador == null)
         {
             this.lblRegistro.setVisible(true);
-        }
+        }  
+        this.txtIDInsti.setText("");
+        this.txtNombre.setText("");
+        this.txtAbreviatura.setText("");
+        this.cmbEstado.setSelectedIndex(0);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void tblInstitucionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblInstitucionesMouseClicked
@@ -406,6 +452,53 @@ public class Instituciones extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tblInstitucionesMouseClicked
 
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char tecla = evt.getKeyChar();
+        
+        if ((tecla<'A' || tecla>'Z' && tecla<'a' || tecla>'z')&& tecla!=' '){
+            evt.consume();
+        }
+        
+        if(this.txtNombre.getText().length()>=95)
+        {
+            evt.consume();
+            this.lblIndicaciones1.setText("Cantidad máxima de caracteres");
+            this.lblIndicaciones1.setVisible(true);
+        }
+        else
+        {
+            this.lblIndicaciones1.setVisible(false);
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtAbreviaturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAbreviaturaKeyTyped
+        char tecla = evt.getKeyChar();
+        
+        if (tecla<'A' || tecla>'Z')
+        {
+            evt.consume();
+        }
+        
+        if(this.txtAbreviatura.getText().length()>=10)
+        {
+            evt.consume();
+            this.lblIndicaciones2.setText("Cantidad máxima de caracteres");
+            this.lblIndicaciones2.setVisible(true);
+        }
+        else
+        {
+            this.lblIndicaciones2.setVisible(false);
+        }
+    }//GEN-LAST:event_txtAbreviaturaKeyTyped
+
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
+        char tecla = evt.getKeyChar();
+        
+        if((tecla<'0' || tecla>'9')== tecla<'A'||tecla>'Z' && tecla<'a'||tecla>'z'){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtBuscarKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -456,6 +549,8 @@ public class Instituciones extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblIndicaciones1;
+    private javax.swing.JLabel lblIndicaciones2;
     private javax.swing.JLabel lblRegistro;
     private javax.swing.JTable tblInstituciones;
     private javax.swing.JTextField txtAbreviatura;

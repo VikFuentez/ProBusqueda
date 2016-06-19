@@ -139,7 +139,7 @@ public class Usuario extends Conexion
             tbl.addColumn("Nivel");
             tbl.addColumn("Estado");
             tabla.setModel(tbl);
-            ResultSet rs = this.consultar("SELECT * FROM usuario WHERE id_usuario LIKE '%"+datos+"%' OR nombre_usuario LIKE '%"+datos+"%' OR user LIKE '%"+datos+"%' OR nivel LIKE '%"+datos+"%'");
+            ResultSet rs = this.consultar("SELECT * FROM usuario WHERE id_usuario LIKE '%"+datos+"%' OR nombre_usuario LIKE '%"+datos+"%' OR user LIKE '%"+datos+"%' OR nivel LIKE '%"+datos+"%' OR id_estado LIKE '%"+datos+"%'");
             while(rs.next())
             {
                 contador++;
