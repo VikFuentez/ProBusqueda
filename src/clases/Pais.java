@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JTextField;
 
 /**
  *
@@ -15,32 +16,15 @@ public class Pais extends Conexion{
     public ResultSet comboPais(JComboBox paises, int continente){
         paises.removeAllItems();
         paises.addItem("ND");
-        String sql="";
+        String sql;
         if(continente==0)
         {
             return null;
         }
-        if(continente==1)
+        else
         {
-            sql="SELECT * FROM paises WHERE id_pais between 1 and 35";
+            sql="SELECT * FROM paises WHERE id_conti="+continente;
         }
-        else if(continente==2)
-        {
-            sql="SELECT * FROM paises WHERE id_pais between 36 and 63";
-        }
-        else if(continente==3)
-        {
-            sql="SELECT * FROM paises WHERE id_pais between 64 and 110";
-        }
-        else if(continente==4)
-        {
-            sql="SELECT * FROM paises WHERE id_pais between 111 and 176";
-        }
-        else if(continente==5)
-        {
-            sql="SELECT * FROM paises WHERE id_pais between 177 and 202";
-        }
-        
         try {
             ResultSet rs = this.consultar(sql);
             while(rs.next())
@@ -54,10 +38,14 @@ public class Pais extends Conexion{
         return null;
     }
     
-    public ResultSet obtenerID(Object pais){
+    public ResultSet obtenerID(Object pais, JTextField caja){
         String sql="SELECT * FROM paises WHERE nombre_pais = '"+pais+"'";
         try {
             ResultSet rs = this.consultar(sql);
+            while(rs.next())
+            {
+                caja.setText(rs.getString("id_pais"));
+            }
             return rs;
         } catch (Exception ex) {
             Logger.getLogger(Pais.class.getName()).log(Level.SEVERE, null, ex);

@@ -7,10 +7,6 @@ package vistas;
 
 import clases.Continente;
 import clases.Pais;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -26,12 +22,8 @@ public class FrmExpediente extends javax.swing.JFrame {
         initComponents();
         
         continente.comboContinente(this.cmbContinente);
-        int conti=0;
-        if(this.cmbContinente.getSelectedIndex()==0)
-        {
-            conti=0;
-        }
-        pais.comboPais(this.cmbPais,conti);
+        
+        pais.comboPais(this.cmbPais,this.cmbContinente.getSelectedIndex());
     }
 
     /**
@@ -112,47 +104,14 @@ public class FrmExpediente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbContinenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbContinenteActionPerformed
-        int conti=0;
-        if(this.cmbContinente.getSelectedIndex()==0)
-        {
-            conti=0;
-        }
-        else if(this.cmbContinente.getSelectedIndex()==2)
-        {
-            conti=1;
-        }
-        else if(this.cmbContinente.getSelectedIndex()==4)
-        {
-            conti=2;
-        }
-        else if(this.cmbContinente.getSelectedIndex()==1)
-        {
-            conti=3;
-        }
-        else if(this.cmbContinente.getSelectedIndex()==3)
-        {
-            conti=4;
-        }
-        else if(this.cmbContinente.getSelectedIndex()==5)
-        {
-            conti=5;
-        }
-        pais.comboPais(this.cmbPais,conti);
+
+        pais.comboPais(this.cmbPais,this.cmbContinente.getSelectedIndex());
         
     }//GEN-LAST:event_cmbContinenteActionPerformed
 
     private void cmbPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPaisActionPerformed
-        
-        try {
-            ResultSet rs = pais.obtenerID(this.cmbPais.getSelectedItem());
-            while(rs.next())
-            {
-               this.txtExtraccion.setText(String.valueOf(rs.getInt("id_pais"))); 
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(FrmExpediente.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
+        pais.obtenerID(this.cmbPais.getSelectedItem(),this.txtExtraccion); 
         
     }//GEN-LAST:event_cmbPaisActionPerformed
 
