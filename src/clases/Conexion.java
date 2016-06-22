@@ -27,7 +27,8 @@ public class Conexion
         } 
         catch(ClassNotFoundException | SQLException e)
         {
-            System.out.println("Error al conectar "+e);
+            JOptionPane.showMessageDialog(null, "Conexion inestable, verifique el servidor, pueda que este apagado");
+            System.exit(0);
         }
         return cone;
     }
@@ -41,7 +42,7 @@ public class Conexion
         } 
         catch (SQLException e) 
         {
-            System.out.println("No se pudo desconectar "+e);
+            JOptionPane.showMessageDialog(null, "No se pudo desconectar");
         }
         
     }

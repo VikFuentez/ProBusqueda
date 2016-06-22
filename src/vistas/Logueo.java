@@ -51,6 +51,11 @@ public class Logueo extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         btnIniciar.setBackground(new java.awt.Color(0, 0, 0));
         btnIniciar.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
@@ -84,6 +89,9 @@ public class Logueo extends javax.swing.JFrame {
             }
         });
         txtUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUserKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtUserKeyTyped(evt);
             }
@@ -112,6 +120,9 @@ public class Logueo extends javax.swing.JFrame {
             }
         });
         txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPassKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPassKeyTyped(evt);
             }
@@ -207,19 +218,27 @@ public class Logueo extends javax.swing.JFrame {
             }
             else{
                 int res = sesion.iniciar(this.txtUser.getText(), this.txtPass.getText());
-                if(res==1){
-                    this.setVisible(false);
-                    menuAdmin.setVisible(true);
-                }
-                else if(res==2){
-                 /**
-                 *AQUI IRIAN LOS FORM DE LOS OTROS NIVELES SI ES 2 SERIA DIGITALIZADOR -----//REFERNCIA CLASE SESION--- 
-                 */
-                }
-                else if(res==3){
-                /**
-                *AQUI IRIAN LOS FORM DE LOS OTROS NIVELES SI ES 3 SERIA CONSULTOR -----//REFERNCIA CLASE SESION--- 
-                */
+                int id = sesion.extraerID(this.txtUser.getText(), this.txtPass.getText());
+                switch (res) {
+                    case 1:
+                        this.setVisible(false);
+                        menuAdmin.lblUser.setText(this.txtUser.getText());
+                        menuAdmin.lblIDuser.setText(String.valueOf(id));
+                        menuAdmin.setVisible(true);
+                        break;
+                
+                    case 2:
+                        break;
+                        /**
+                        *AQUI IRIAN LOS FORM DE LOS OTROS NIVELES SI ES 2 SERIA DIGITALIZADOR -----//REFERNCIA CLASE SESION---
+                        */
+                    case 3:
+                        /**
+                        *AQUI IRIAN LOS FORM DE LOS OTROS NIVELES SI ES 3 SERIA CONSULTOR -----//REFERNCIA CLASE SESION---
+                        */
+                        break;
+                    default:
+                        break;
                 }
             }
         }
@@ -277,6 +296,20 @@ public class Logueo extends javax.swing.JFrame {
               btnIniciarActionPerformed(null);
         }  
     }//GEN-LAST:event_btnIniciarKeyPressed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        
+    }//GEN-LAST:event_formKeyPressed
+
+    private void txtPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+              btnIniciarActionPerformed(null);
+        }  
+    }//GEN-LAST:event_txtPassKeyPressed
+
+    private void txtUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyPressed
+
+    }//GEN-LAST:event_txtUserKeyPressed
     
     
     /**

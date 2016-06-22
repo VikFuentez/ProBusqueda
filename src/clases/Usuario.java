@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -217,6 +218,37 @@ public class Usuario extends Conexion
         }
         
         return null;
+    }
+    
+    public boolean verificarContra(int id, String contra){
+        String sql="SELECT * FROM usuario WHERE id_usuario="+id;
+        String contrase="";
+        ResultSet rs=this.consultar(sql);
+        try {
+            while(rs.next())
+            {
+                contrase=rs.getString("contra");
+            }
+            if(contra.equals(contrase))
+            {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    public void cambioContra(int id, String contra){
+        try 
+        {
+            String sql="UPDATE usuario set contra='"+contra+"' WHERE id_usuario="+id;
+            this.ejecutar(sql,"Tu contraseña ha sido modificada correctamente");
+        } 
+        catch (Exception e) 
+        {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
     
 }

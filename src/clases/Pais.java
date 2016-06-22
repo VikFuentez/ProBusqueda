@@ -46,7 +46,6 @@ public class Pais extends Conexion{
             {
                 caja.setText(rs.getString("id_pais"));
             }
-            return rs;
         } catch (Exception ex) {
             Logger.getLogger(Pais.class.getName()).log(Level.SEVERE, null, ex);
         }

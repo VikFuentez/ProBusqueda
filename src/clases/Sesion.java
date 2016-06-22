@@ -8,13 +8,22 @@ import javax.swing.JOptionPane;
  * @author manu_
  */
 public class Sesion extends Conexion{
+    private int ID;
     private String nivel;
     
     public Sesion() 
     {
     }
 
-    public Sesion(String user, String contra, String nivel)
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public Sesion(int user, String nivel)
     {
         this.nivel = nivel;
     }
@@ -53,6 +62,23 @@ public class Sesion extends Conexion{
             JOptionPane.showMessageDialog(null, "Error de conexion "+e);
         }
         return bandera;
+    }
+    
+    public int extraerID(String us, String contra)
+    {
+        
+        try {
+            String sql="SELECT * FROM usuario WHERE user='"+us+"' AND contra='"+contra+"' AND id_estado=1";
+            ResultSet res = this.consultar(sql);
+            while(res.next()){
+                this.setID(res.getInt("id_usuario"));
+            }
+            return this.getID();
+        } 
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error de conexion "+e);
+        }
+        return 0;
     }
     
 }
